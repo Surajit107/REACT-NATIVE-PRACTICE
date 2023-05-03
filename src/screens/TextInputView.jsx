@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import { DismissKeyboard } from '../util/DismissKeyBoard'
 
 const TextInputView = () => {
-    const [formData, setFormData] = useState({
-        email: "",
-        password: ""
-    })
+    // const [formData, setFormData] = useState({
+    //     email: "",
+    //     password: ""
+    // })
 
 
     // onPress func.
@@ -28,7 +28,6 @@ const TextInputView = () => {
                         // value={formData?.email}
                         // onChange={(e) => setFormData(e.target.value)}
                         placeholder='Enter Your Email ID'
-                        inputMode="email"
                     />
 
                     {/* Password */}
