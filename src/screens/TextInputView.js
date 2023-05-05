@@ -1,10 +1,12 @@
 import { Image, Keyboard, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
+import Button from '../custom/Button'
 
-const TextInputView = () => {
+const TextInputView = ({ navigation }) => {
     const [formData, setFormData] = useState({
-        email: "",
-        password: ""
+        username: "Admin",
+        email: "admin@gmail.com",
+        password: "admin"
     })
 
     const [show, setShow] = useState(false)
@@ -12,12 +14,12 @@ const TextInputView = () => {
 
     // onPress func.
     const handleOnPress = () => {
-        if (formData?.email && formData?.password) {
-            alert("Taka-Poisa Nei Login Kore Ki Korbi ???");
-            console.log(formData);
-            setFormData({ email: "", password: "" })
+        if (formData?.email === "admin@gmail.com" && formData?.password === "admin") {
+            navigation.replace('Tab');
+            alert("Loged In Successfully");
+            // setFormData({ email: "", password: "" })
         } else {
-            alert("Email ID ar Password Ki Tor Bap Debe Suar ???");
+            alert("Email ID ar password ta thik thak kore de !!!");
         }
     }
 
@@ -61,32 +63,18 @@ const TextInputView = () => {
                                 style={styles.showPass}
                                 onPress={() => show ? setShow(false) : setShow(true)}
                             >
-                                {
-                                    show ?
-                                        <Image
-                                            style={styles.stretch}
-                                            source={require('../assets/view.png')}
-                                        />
-                                        :
-                                        <Image
-                                            style={styles.stretch}
-                                            source={require('../assets/hide.png')}
-                                        />
-                                }
+                                <Image
+                                    style={styles.stretch}
+                                    source={show ? require('../assets/view.png') : require('../assets/hide.png')}
+                                />
                             </TouchableOpacity>
                         </View>
 
                         {/* Button */}
-                        <View style={styles.button_wrap}>
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={handleOnPress}
-                                hitSlop={{ top: 10, right: 10, bottom: 10, left: 10 }}
-                                activeOpacity={0.6}
-                            >
-                                <Text style={styles.button_text}>Log In</Text>
-                            </TouchableOpacity>
-                        </View>
+                        <Button
+                            OnPress={handleOnPress}
+                            text={"Log In"}
+                        />
                     </View>
                 </View>
             </ScrollView>
